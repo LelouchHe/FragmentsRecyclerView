@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <fragment
-            android:id="@+id/fragment2"
+            android:id="@+id/buttonFragment"
             android:name="com.github.lelouchhe.fragmentsrecyclerview.ButtonFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -34,7 +34,7 @@
             tools:layout="@layout/fragment_button" />
 
         <fragment
-            android:id="@+id/fragment3"
+            android:id="@+id/carInfoFragment"
             android:name="com.github.lelouchhe.fragmentsrecyclerview.CarInfoFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -42,7 +42,7 @@
             tools:layout="@layout/fragment_car_info" />
 
         <fragment
-            android:id="@+id/fragment4"
+            android:id="@+id/ownerInfoFragment"
             android:name="com.github.lelouchhe.fragmentsrecyclerview.OwnerInfoFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"

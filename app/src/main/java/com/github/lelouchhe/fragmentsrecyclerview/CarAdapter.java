@@ -14,9 +14,15 @@ import java.util.ArrayList;
 public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
 
     private ArrayList<Car> cars;
+    ItemClicked activity;
+
+    public interface ItemClicked {
+        void onItemClicked(int index);
+    }
 
     public CarAdapter(Context context, ArrayList<Car> cars) {
         this.cars = cars;
+        this.activity = (ItemClicked)context;
     }
 
     public class ViewHolder extends  RecyclerView.ViewHolder {
@@ -33,7 +39,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    CarAdapter.this.activity.onItemClicked(CarAdapter.this.cars.indexOf(v.getTag()));
                 }
             });
         }
