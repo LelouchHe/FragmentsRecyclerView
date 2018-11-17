@@ -2,7 +2,10 @@ package com.github.lelouchhe.fragmentsrecyclerview;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +16,10 @@ import android.view.ViewGroup;
  */
 public class ListFragment extends Fragment {
 
+    RecyclerView recyclerView;
+    RecyclerView.Adapter carAdapter;
+    RecyclerView.LayoutManager layoutManager;
+    View view;
 
     public ListFragment() {
         // Required empty public constructor
@@ -22,8 +29,23 @@ public class ListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list, container, false);
+
+        this.view = inflater.inflate(R.layout.fragment_list, container, false);
+
+        return this.view;
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        this.recyclerView = this.view.findViewById(R.id.list);
+        this.recyclerView.setHasFixedSize(true);
+
+        this.layoutManager = new LinearLayoutManager(this.getActivity());
+        this.recyclerView.setLayoutManager(this.layoutManager);
+
+        this.carAdapter = new CarAdapter(this.getActivity(), MyApplication.Cars);
+        this.recyclerView.setAdapter(this.carAdapter);
+    }
 }
