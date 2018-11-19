@@ -1,6 +1,7 @@
 package com.github.lelouchhe.fragmentsrecyclerview;
 
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -42,7 +43,10 @@ public class ListFragment extends Fragment {
         this.recyclerView = this.view.findViewById(R.id.list);
         this.recyclerView.setHasFixedSize(true);
 
-        this.layoutManager = new LinearLayoutManager(this.getActivity());
+        // layout only can't handle reverse-portrait
+        int layoutOrientation = this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT ? LinearLayoutManager.HORIZONTAL : LinearLayoutManager.VERTICAL;
+
+        this.layoutManager = new LinearLayoutManager(this.getActivity(), layoutOrientation, false);
         this.recyclerView.setLayoutManager(this.layoutManager);
 
         this.carAdapter = new CarAdapter(this.getActivity(), MyApplication.Cars);
